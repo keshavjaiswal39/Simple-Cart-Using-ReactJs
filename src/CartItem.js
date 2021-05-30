@@ -2,6 +2,7 @@ import React from 'react';
 
 
 class CartItem extends React.Component {
+    // 2. we added this state
     constructor() {
         super(); // this will call the constructor of my component class in react, 
         //  so whenever we are using constructor in our classes, we need to call super() to basically call the constructor of my parent class if I am inheriting
@@ -24,6 +25,8 @@ class CartItem extends React.Component {
         //  Instead of writing this.state.title everywhere, we can define all those and get those from my object and i will use object destructuring
         const { price, title, qty } = this.state;
         return (
+
+            // 1. we added this JsX first
             <div className="cart-item">
                 <div className="left-block">
                     <img style={styles.image} />
@@ -38,6 +41,7 @@ class CartItem extends React.Component {
                             alt="increase"
                             className="action-icons"
                             src="https://image.flaticon.com/icons/png/128/1828/1828926.png"
+                            // 3. we saw how to attach click listener and discussed about binding
                             // onClick={this.increaseQuantity}    // this will show error so we will do binding
                             // onClick={this.increaseQuantity.bind(this)}    // 1st way is to to binding here.
                             onClick={this.increaseQuantity}
