@@ -110,7 +110,7 @@ class CartItem extends React.Component {
         console.log('this.props',this.props)
         //  Instead of writing this.state.title everywhere, we can define all those and get those from my object and i will use object destructuring
         const { price, title, qty } = this.props.product;
-        const { product, onIncreaseQuantity, onDecreaseQuantity } = this.props;
+        const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct } = this.props;
         return (
 
             // 1. we added this JsX first
@@ -143,6 +143,7 @@ class CartItem extends React.Component {
                             alt="delete" 
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/png/128/3096/3096673.png" 
+                            onClick={() => onDeleteProduct(product.id)}
                         />
                     </div>
                 </div>
