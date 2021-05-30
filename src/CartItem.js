@@ -14,7 +14,42 @@ class CartItem extends React.Component {
         }
         // Second method is to do binding here
         // this.increaseQuantity = this.increaseQuantity.bind(this);
+
+        // lets call the testing function here to check how its synchronous
+        this.testing();
     }
+
+    // ************************************************************************************************************
+
+    // example to understand that react does not perform batching all the time, like in some cases like, ajax call, or while using promises
+
+    testing () {
+        const promise = new Promise ((resolve, reject) => {
+            setTimeout(() => {
+                resolve('done');
+            }, 5000)
+        })
+
+        promise.then(() => {
+            // setState acts like a synchronous call
+            // this.setState({qty: 100});
+
+            // lets make some changes and call it thrice to see what happens next
+            // this.setState({qty: this.state.qty + 10});
+            // this.setState({qty: this.state.qty + 10});
+            // this.setState({qty: this.state.qty + 10});
+
+            // this time, our component will get re-rendered thrice and there is not batching
+
+            console.log('state',this.state);
+        });
+    }
+
+
+
+
+
+    // ************************************************************************************************************
 
     // Increase Quantity
 
