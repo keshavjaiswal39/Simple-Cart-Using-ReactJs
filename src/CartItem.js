@@ -2,47 +2,49 @@ import React from 'react';
 
 class CartItem extends React.Component {
     // 2. we added this state
-    constructor() {
-        super(); // this will call the constructor of my component class in react, 
-        //  so whenever we are using constructor in our classes, we need to call super() to basically call the constructor of my parent class if I am inheriting
-        this.state = {
-            price: 9999,
-            title: 'Mobile Phone',
-            qty: 0,
-            img: ''
-        }
-        // Second method is to do binding here
-        // this.increaseQuantity = this.increaseQuantity.bind(this);
 
-        // lets call the testing function here to check how its synchronous
-        this.testing();
-    }
+    // we dont need this state over here, instead we will use it in cart.js
+    // constructor() {
+    //     super(); // this will call the constructor of my component class in react, 
+    //     //  so whenever we are using constructor in our classes, we need to call super() to basically call the constructor of my parent class if I am inheriting
+    //     this.state = {
+    //         price: 9999,
+    //         title: 'Mobile Phone',
+    //         qty: 0,
+    //         img: ''
+    //     }
+    //     // Second method is to do binding here
+    //     // this.increaseQuantity = this.increaseQuantity.bind(this);
+
+    //     // lets call the testing function here to check how its synchronous
+    //     // this.testing();
+    // }
 
     // ************************************************************************************************************
 
     // example to understand that react does not perform batching all the time, like in some cases like, ajax call, or while using promises
 
-    testing () {
-        const promise = new Promise ((resolve, reject) => {
-            setTimeout(() => {
-                resolve('done');
-            }, 5000)
-        })
+    // testing () {
+    //     const promise = new Promise ((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve('done');
+    //         }, 5000)
+    //     })
 
-        promise.then(() => {
-            // setState acts like a synchronous call
-            // this.setState({qty: 100});
+    //     promise.then(() => {
+    //         // setState acts like a synchronous call
+    //         // this.setState({qty: 100});
 
-            // lets make some changes and call it thrice to see what happens next
-            // this.setState({qty: this.state.qty + 10});
-            // this.setState({qty: this.state.qty + 10});
-            // this.setState({qty: this.state.qty + 10});
+    //         // lets make some changes and call it thrice to see what happens next
+    //         // this.setState({qty: this.state.qty + 10});
+    //         // this.setState({qty: this.state.qty + 10});
+    //         // this.setState({qty: this.state.qty + 10});
 
-            // this time, our component will get re-rendered thrice and there is not batching
+    //         // this time, our component will get re-rendered thrice and there is not batching
 
-            console.log('state',this.state);
-        });
-    }
+    //         console.log('state',this.state);
+    //     });
+    // }
 
 
 
@@ -66,14 +68,14 @@ class CartItem extends React.Component {
         // setState method - 2
         // Instead of passing an object, we can pass a function
 
-        // So, id i require a previous state i will use fucntion form, else i will use the object form
+        // So, if i require a previous state i will use fucntion form, else i will use the object form
         this.setState((prevState) => {
             return {
                 qty: prevState.qty + 1
             }
         // As our setState method is asynchronous, we cannot rely on the above line, instead we wil pass one more argument here
-        }, () => {
-            console.log('this.state', this.state);
+        // }, () => {
+        //     console.log('this.state', this.state);
         });
 
         // console.log('this.state', this.state);
@@ -97,16 +99,17 @@ class CartItem extends React.Component {
                 qty: prevState.qty - 1
             }
             // As our setState method is asynchronous, we cannot rely on the above line, instead we wil pass one more argument here
-            }, () => {
-                console.log('this.state', this.state);
+            // }, () => {
+            //     console.log('this.state', this.state);
             });
     
             // console.log('this.state', this.state);
         }
 
     render() {
+        console.log('this.props',this.props)
         //  Instead of writing this.state.title everywhere, we can define all those and get those from my object and i will use object destructuring
-        const { price, title, qty } = this.state;
+        const { price, title, qty } = this.props.product;
         return (
 
             // 1. we added this JsX first
