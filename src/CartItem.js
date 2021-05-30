@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CartItem extends React.Component {
+const CartItem = (props) => {
     // // 2. we added this state
 
     // // we dont need this state over here, instead we will use it in cart.js
@@ -106,11 +106,10 @@ class CartItem extends React.Component {
     //         // console.log('this.state', this.state);
     //     } 
 
-    render() {
-        console.log('this.props',this.props)
+
         //  Instead of writing this.state.title everywhere, we can define all those and get those from my object and i will use object destructuring
-        const { price, title, qty } = this.props.product;
-        const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct } = this.props;
+        const { price, title, qty } = props.product;
+        const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct } = props;
         return (
 
             // 1. we added this JsX first
@@ -151,7 +150,6 @@ class CartItem extends React.Component {
             </div>
         );
     }
-}
 
 const styles = {
     image: {
