@@ -1,5 +1,5 @@
-import React from 'react';
 
+import React from 'react';
 
 class CartItem extends React.Component {
     // 2. we added this state
