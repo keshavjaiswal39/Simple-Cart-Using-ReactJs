@@ -9,7 +9,7 @@ class CartItem extends React.Component {
         this.state = {
             price: 9999,
             title: 'Mobile Phone',
-            qty: 1,
+            qty: 0,
             img: ''
         }
         // Second method is to do binding here
@@ -17,6 +17,8 @@ class CartItem extends React.Component {
     }
 
     // Increase Quantity
+
+    // easy method rather than doing binding is placing an arrow function
 
     increaseQuantity = () => {
         // here it will only increase the value in the state, but it wont re-render in our component so we will use setState funciton to re-render in our component
@@ -35,21 +37,38 @@ class CartItem extends React.Component {
             return {
                 qty: prevState.qty + 1
             }
+        // As our setState method is asynchronous, we cannot rely on the above line, instead we wil pass one more argument here
+        }, () => {
+            console.log('this.state', this.state);
         });
 
-        // easy method rather than doing binding is placing an arrow function
-        console.log('this.state', this.state);
+        // console.log('this.state', this.state);
     }
 
     // Decrease Quantity
 
     decreaseQuantity = () => {
+        // one point to check over here is, if our current quantity is 0, then we dnt want to call this function
+
+        // destructuring the qty
+        const { qty } = this.state;
+        
+        if(qty === 0 )
+        {
+            return;
+        }
+
         this.setState((prevState) => {
             return {
                 qty: prevState.qty - 1
             }
-        });
-    }
+            // As our setState method is asynchronous, we cannot rely on the above line, instead we wil pass one more argument here
+            }, () => {
+                console.log('this.state', this.state);
+            });
+    
+            // console.log('this.state', this.state);
+        }
 
     render() {
         //  Instead of writing this.state.title everywhere, we can define all those and get those from my object and i will use object destructuring
