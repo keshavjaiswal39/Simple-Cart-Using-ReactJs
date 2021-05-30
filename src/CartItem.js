@@ -16,9 +16,39 @@ class CartItem extends React.Component {
         // this.increaseQuantity = this.increaseQuantity.bind(this);
     }
 
+    // Increase Quantity
+
     increaseQuantity = () => {
+        // here it will only increase the value in the state, but it wont re-render in our component so we will use setState funciton to re-render in our component
+        // this.state.qty += 1;
+
+        // setState method - 1
+        // this.setState({
+        //     qty: this.state.qty + 1   // it does shallow merging, it means, if i want to change the quantity then it will only change the qunantity, it wont touch other properties
+        // });
+
+        // setState method - 2
+        // Instead of passing an object, we can pass a function
+
+        // So, id i require a previous state i will use fucntion form, else i will use the object form
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty + 1
+            }
+        });
+
         // easy method rather than doing binding is placing an arrow function
         console.log('this.state', this.state);
+    }
+
+    // Decrease Quantity
+
+    decreaseQuantity = () => {
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty - 1
+            }
+        });
     }
 
     render() {
@@ -50,7 +80,7 @@ class CartItem extends React.Component {
                             alt="decrease" 
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/png/128/992/992683.png" 
-                            // onClick={this.decreaseQuantity}
+                            onClick={this.decreaseQuantity}
                         />
                         <img 
                             alt="delete" 
